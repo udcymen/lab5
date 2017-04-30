@@ -275,6 +275,12 @@ public class Rule implements Serializable {
 		{
 			return hmCardDraw.size();
 		}
+
+		public TreeMap getHmCardDraw() {
+			return hmCardDraw;
+		}
+		
+		
 		
 		
 }

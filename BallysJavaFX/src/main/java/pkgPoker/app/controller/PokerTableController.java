@@ -100,7 +100,6 @@ public class PokerTableController implements Initializable {
 	public void GetGameState() {
 	}
 
-	// TODO: Lab #4 - Complete (fix) setiPlayerPosition
 	public void btnSitLeave_Click(ActionEvent event) {
 
 		ToggleButton btn = (ToggleButton) event.getSource();

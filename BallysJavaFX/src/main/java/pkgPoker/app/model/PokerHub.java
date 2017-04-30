@@ -52,6 +52,8 @@ public class PokerHub extends Hub {
 		if (message instanceof Action) {
 			Player actPlayer = (Player) ((Action) message).getPlayer();
 			Action act = (Action) message;
+			// Get the rule from the Action object.
+			Rule rle = new Rule(act.geteGame());
 			switch (act.getAction()) {
 			case Sit:
 				HubPokerTable.AddPlayerToTable(actPlayer);
@@ -68,16 +70,8 @@ public class PokerHub extends Hub {
 				sendToAll(HubPokerTable);
 				break;
 			case StartGame:
-				// Get the rule from the Action object.
-				Rule rle = new Rule(act.geteGame());
-				
-				
 				HubGamePlay = new GamePlay(rle, actPlayer.getPlayerID());
 				HubGamePlay.setGamePlayers(HubPokerTable.getHmPlayer());
-				
-				Random rand = new Random();
-				
-				int i = rand.nextInt(HubPokerTable.getHmPlayer().size()) - 1;
 				
 				HubGamePlay.setiActOrder(HubGamePlay.GetOrder(actPlayer.getiPlayerPosition()));
 				
@@ -88,13 +82,9 @@ public class PokerHub extends Hub {
 
 
 			case Draw:
-				
-				HubGamePlay.drawCard(actPlayer,);;
-				//TODO Lab #5 -	Draw card(s) for each player in the game.
-				//TODO Lab #5 -	Make sure to set the correct visiblity
-				//TODO Lab #5 -	Make sure to account for community cards
+				HubGamePlay.ExcuteDrawRound();
 
-				//TODO Lab #5 -	Check to see if the game is over
+
 				HubGamePlay.isGameOver();
 				
 				resetOutput();

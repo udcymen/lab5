@@ -151,10 +151,24 @@ public class GamePlay implements Serializable {
 		GameDeck = gameDeck;
 	}
 	
-	public void ExecuteDrawRound(){
-		eDrawCountLast = eDrawCount.geteDrawCount(eDrawCountLast);
+	public void ExcuteDrawRound(){
+		eDrawCountLast = eDrawCount.geteDrawCount(eDrawCountLast.getDrawNo() + 1);
+		CardDraw cd = this.rle.GetDrawCard(eDrawCountLast);
 		
-		CardDraw cd = 
+		int[] order = GamePlay.GetOrder(this.getPlayerNextToAct().getiPlayerPosition());
+		for (int ct = 0; ct < cd.getCardCount().getCardCount(); ct++){
+			if (cd.getCardDestination() == eCardDestination.Player){
+				for (int PlayerPostion : order){
+					Player pDraw = getPlayerByPosition(PlayerPostion);
+					
+					if (pDraw != null){
+						drawCard(pDraw, cd.getCardDestination());
+					}
+				}
+			}else if (cd.getCardDestination() == eCardDestination.Community){
+				drawCard(PlayerCommon, cd.getCardDestination());
+			}
+		}
 	}
 
 	public void drawCard(Player p, eCardDestination eCardDestination)  {
@@ -248,6 +262,9 @@ public class GamePlay implements Serializable {
 
 	public boolean isGameOver() {
 		boolean isGameOver = false;
+		if (eGameState.SCORED == eGameState){
+			isGameOver = true;
+		}
 		return isGameOver;
 	}
 
