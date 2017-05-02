@@ -262,7 +262,7 @@ public class GamePlay implements Serializable {
 
 	public boolean isGameOver() {
 		boolean isGameOver = false;
-		if (eGameState.SCORED == eGameState){
+		if(eDrawCountLast.getDrawNo() == rle.GetMaxDrawCount()){
 			isGameOver = true;
 		}
 		return isGameOver;

@@ -74,10 +74,7 @@ public class PokerHub extends Hub {
 				HubGamePlay.setGamePlayers(HubPokerTable.getHmPlayer());
 				
 				HubGamePlay.setiActOrder(HubGamePlay.GetOrder(actPlayer.getiPlayerPosition()));
-				
-				
-				//TODO Lab #5 - If neither player has 'the button', pick a random player
-				//		and assign the button.				
+							
 				
 
 

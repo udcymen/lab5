@@ -248,6 +248,10 @@ public class MainApp extends Application {
 		return rootController.getRuleName();
 	}
 	
+	public String getBetRule(){
+		return rootController.getBetRule();
+	}
+	
 	private class PokerClient extends Client {
 
 		public PokerClient(String hubHostName, int hubPort) throws IOException {
